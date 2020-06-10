@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { analyzeImageEmotion } from '../utils/restUtils';
 
 @Injectable()
 export class ImageService {
@@ -10,12 +11,18 @@ export class ImageService {
    * to emotion analysis service
    */
   private lastRecordedImage: string;
+  private lastRecordedEmotion: string;
 
   recordImage(dataUrl: string) {
+    analyzeImageEmotion(dataUrl).then(result => this.lastRecordedEmotion = result);
     this.lastRecordedImage = dataUrl;
   }
 
   getLastRecordedImage() {
     return this.lastRecordedImage;
+  }
+
+  getlastRecordedEmotion() {
+    return this.lastRecordedEmotion;
   }
 }

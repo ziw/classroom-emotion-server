@@ -8,7 +8,7 @@ export class ImageController {
 
   @Post('upload')
   @UseInterceptors(FileInterceptor('file'))
-  async uploadStudentImage( @Req() req, @Body() body) {
+  async uploadStudentImage(@Req() req, @Body() body) {
     this.imageService.recordImage(body.imageData);
   }
 
@@ -17,6 +17,7 @@ export class ImageController {
     return `
       <div>Debug view to verify IoT sensor data is received correctly. Not visible in final product.</div>
       <div>Last recorded image:</div>
+      <div>Emotion: ${this.imageService.getlastRecordedEmotion()}</div>
       <img src=${this.imageService.getLastRecordedImage()} />
     `;
   }
