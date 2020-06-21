@@ -1,0 +1,1 @@
+export const MONGO_DB_CONNECTION_URL = 'mongodb+srv://iot-cluster-pqey6.gcp.mongodb.net/iot';
