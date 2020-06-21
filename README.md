@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
 ## Description
@@ -39,3 +40,6 @@ $ yarn run test:cov
 =======
 # classroom-server-users
 >>>>>>> c9b78e18c1bc98ec8cb378e9f398790878272d62
+=======
+# classroom-server-users
+>>>>>>> da0ecac866fbf654bdca01a973353b2a55c2cd9e
