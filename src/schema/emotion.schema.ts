@@ -10,9 +10,6 @@ export class Emotion extends Document {
   happiness: number;
 
   @Prop()
-  calm: number;
-
-  @Prop()
   anger: number;
 
   @Prop()

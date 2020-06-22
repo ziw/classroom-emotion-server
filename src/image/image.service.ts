@@ -22,10 +22,18 @@ export class ImageService {
   private lastRecordedEmotion: string;
 
   recordImage(dataUrl: string) {
-    analyzeImageEmotion(dataUrl).then(result => {
-      this.lastRecordedEmotion = result;
+    analyzeImageEmotion(dataUrl).then((result: any) => {
+      this.lastRecordedEmotion = JSON.stringify(result);
       this.lastRecordedImage = dataUrl;
-      //TODO: parse emotion result and save to DB
+
+      const newEmotion: CreateEmotionDto = {
+        faceDetected: result.faceDetected,
+        happiness: result.emotion.happiness,
+        anger: result.emotion.anger,
+        timestamp: new Date(),
+        studentName: `student-${~~(Math.random()*3)}` //TODO parse name from request
+      };
+      this.createEmotionModel(newEmotion);
     });
   }
 

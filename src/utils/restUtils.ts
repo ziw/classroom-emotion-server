@@ -10,5 +10,5 @@ export function analyzeImageEmotion(image: string): Promise<string> {
     body: JSON.stringify(payload),
   }
   return fetch(`${EMO_PY_SERVER_BASE_URL}/image`, postOptions)
-          .then(res => res.text());
+          .then(res => res.json());
 }
