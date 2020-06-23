@@ -21,7 +21,7 @@ export class ImageService {
   private lastRecordedImage: string;
   private lastRecordedEmotion: string;
 
-  recordImage(dataUrl: string) {
+  recordImage(dataUrl: string, username: string) {
     analyzeImageEmotion(dataUrl).then((result: any) => {
       this.lastRecordedEmotion = JSON.stringify(result);
       this.lastRecordedImage = dataUrl;
@@ -31,7 +31,7 @@ export class ImageService {
         happiness: result.emotion.happiness,
         anger: result.emotion.anger,
         timestamp: new Date(),
-        studentName: `student-${~~(Math.random()*3)}` //TODO parse name from request
+        studentName: username,
       };
       this.createEmotionModel(newEmotion);
     });

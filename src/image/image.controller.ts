@@ -1,4 +1,4 @@
-import { Controller, Post, UseInterceptors, UploadedFile, Res, Req, Body, Get } from '@nestjs/common';
+import { Controller, Post, UseInterceptors, Res, Req, Body, Get } from '@nestjs/common';
 import { ImageService } from './image.service';
 import { FileInterceptor } from '@nestjs/platform-express';
 
@@ -8,8 +8,8 @@ export class ImageController {
 
   @Post('upload')
   @UseInterceptors(FileInterceptor('file'))
-  async uploadStudentImage(@Req() req, @Body() body) {
-    this.imageService.recordImage(body.imageData);
+  async uploadStudentImage(@Body() body) {
+    this.imageService.recordImage(body.imageData, body.username);
   }
 
   @Get('view')
