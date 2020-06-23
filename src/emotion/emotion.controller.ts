@@ -1,5 +1,6 @@
 import { Controller, Get, Query, HttpException, HttpStatus } from '@nestjs/common';
 import { EmotionService } from './emotion.service';
+import { start } from 'repl';
 
 @Controller('emotion')
 export class EmotionController {
@@ -13,19 +14,12 @@ export class EmotionController {
       throw new HttpException('You must specify a start and end date', HttpStatus.BAD_REQUEST);
     }
 
-    this.emotionService.findBetweenDate(
+    return this.emotionService.findBetweenDate(
       new Date(startDate),
       new Date(endDate),
     ).catch((error) => {
       console.error(error);
       throw new HttpException('Database connection error', HttpStatus.INTERNAL_SERVER_ERROR);
-    }).
-    then((emotions) => {
-      //TODO parse emotions data
-
-      return {
-        emotions: emotions
-      }
-    });
+    }).then((emotions) => this.emotionService.groupEmotionData(emotions));
   }
 }
