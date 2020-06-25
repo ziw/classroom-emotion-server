@@ -9,7 +9,7 @@ export class ImageController {
   @Post('upload')
   @UseInterceptors(FileInterceptor('file'))
   async uploadStudentImage(@Body() body) {
-    this.imageService.recordImage(body.imageData, body.username);
+    this.imageService.recordImage(body.imageData, body.username, body.faceDetected);
   }
 
   @Get('view')

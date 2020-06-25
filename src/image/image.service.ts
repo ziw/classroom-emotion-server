@@ -21,13 +21,13 @@ export class ImageService {
   private lastRecordedImage: string;
   private lastRecordedEmotion: string;
 
-  recordImage(dataUrl: string, username: string) {
+  recordImage(dataUrl: string, username: string, faceDetected: boolean) {
     analyzeImageEmotion(dataUrl).then((result: any) => {
       this.lastRecordedEmotion = JSON.stringify(result);
       this.lastRecordedImage = dataUrl;
 
       const newEmotion: CreateEmotionDto = {
-        faceDetected: result.faceDetected,
+        faceDetected,
         happiness: result.emotion.happiness,
         anger: result.emotion.anger,
         timestamp: new Date(),
